@@ -91,6 +91,7 @@ General Purpose Input Output.
 ## Sysfs
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/879oHKwgDG8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+A pseudo file is a fake file that isn't written to the storage of a computer but, instead, exists only in a computer's memory.
 
 Sysfs is a pseudo file system provided by the Linux kernel that exports information about various kernel subsystems, hardware devices, and associated device drivers from the kernel's device model to user space through virtual files.[1] In addition to providing information about various devices and kernel subsystems, exported virtual files are also used for their configuration.
 
@@ -129,6 +130,7 @@ D-Bus is a message bus system, a simple way for applications to talk to one anot
 
 
 ## proc directory
+proc is also a pseudo file system.
 This is where the Kernel keeps its settings and properties. This directory is created on ram and files might have write access (say for some hardware configurations). You can find things like:
 
 - IRQs (interrupt requests)
@@ -285,7 +287,7 @@ Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
 Shows hardware. Might need root status to get the full list. Test it!
 
 ### lsblk
-Used for list devices that can read from or write to by blocks of data.
+Used for list devices that can read from or write to by blocks of data.You may see loop* in this command, Note that a loop device is a pseudo ("fake") device (actually just a file) that acts as a block-based device.
 
 
 ## Loadable Kernel Modules
@@ -363,7 +365,8 @@ But nobody uses `insmod` because it does not understand dependencies and you nee
 # modprobe iwlwifi
 ````
 
-> you can use `-f` switch to FORCE `rmmod` to remove the module even if it is in use
+> you can use `-f` switch to FORCE `rmmod` to remove the module even if it is in use.Implies `--force-modversion` and `--force-vermagic`
+> you can use `-D` to print module dependencies and exit
 
 If you need to load some modules every time your system boots do one of the following:
 
